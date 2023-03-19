@@ -1,0 +1,22 @@
+.logo {
+  width: 104px;
+  height: 24px;
+  margin-left: 16px;
+}
+
+.button_group {
+  margin-right: 16px;
+  margin-left: auto;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.button_group button:first-child {
+  margin-right: 10px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}

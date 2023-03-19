@@ -1,0 +1,121 @@
+.submit_container {
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.usersubmit_heading {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 50px;
+}
+
+.usersubmit_input {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #7e7e7e;
+  margin-bottom: 50px;
+
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background-color: inherit;
+
+  border: 1px solid #d0cfcf;
+  border-radius: 4px;
+}
+
+.position_choice {
+  & .position_container:last-child {
+    margin-bottom: 50px;
+  }
+}
+
+.submit_button {
+  background-color: #f4e041;
+  border: none;
+  border-radius: 80px;
+  width: 100px;
+  height: 34px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  &:hover {
+    background-color: #ffe302;
+  }
+}
+
+.test_form {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: auto;
+  margin-right: auto;
+  & input:nth-child(3) {
+    margin-bottom: 4px;
+  }
+}
+
+.phone_format {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #7e7e7e;
+  margin-left: 16px;
+  margin-bottom: 25px;
+}
+
+.position_heading {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 11px;
+}
+
+.position_container {
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 13px;
+  & input {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #00bdd3;
+    border-radius: 50%;
+    background-clip: content-box;
+    padding: 4px;
+    margin-right: 12px;
+    &:checked {
+      background-color: #00bdd3;
+    }
+  }
+}
+
+// input[type="radio"] {
+//   background-color: red;
+// }
+
+.photo_input {
+  background-color: red;
+  margin-bottom: 50px;
+}

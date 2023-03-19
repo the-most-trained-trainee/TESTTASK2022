@@ -1,0 +1,46 @@
+.main_heading {
+  display: block;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  // margin-top: 40px;
+  padding-top: 40px;
+  margin-right: 16px;
+  margin-left: 16px;
+  margin-bottom: 21px;
+}
+
+.main_text {
+  display: block;
+
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: #ffffff;
+  margin-right: 16px;
+  margin-left: 16px;
+  margin-top: 0px;
+  margin-bottom: 32px;
+}
+
+.main_container {
+  background-image: url(../../images/mob-background-image1x.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 71px;
+  margin-bottom: 140px;
+
+  button {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

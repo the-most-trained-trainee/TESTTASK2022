@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ButtonShowmore from "./ButtonShowmore";
 import getUsers from "../crud-operations/getUsers";
-import UserCard from "./UserCard";
+import UserCard from "./UserCard/UserCard";
 
 const WorkingGet = () => {
   const [users, setUsers] = useState([]);
