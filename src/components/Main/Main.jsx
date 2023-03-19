@@ -1,9 +1,16 @@
 import React from "react";
-
+import { scroller } from "react-scroll/modules";
 import styles from "./Main.module.scss";
-import ButtonUsers from "../ButtonUsers/ButtonUsers";
 
 const Main = () => {
+  const goSignUp = () => {
+    scroller.scrollTo("form-submit", {
+      duration: 2500,
+      delay: 0,
+      smooth: "easeInOutQuint",
+    });
+  };
+
   return (
     <div className={styles.main_container}>
       <h1 className={styles.main_heading}>
@@ -16,8 +23,9 @@ const Main = () => {
         mind. They should also be excited to learn, as the world of Front-End
         Development keeps evolving.
       </p>
-      <ButtonUsers />
-      {/* <ButtonSignup /> */}
+      <button className={styles.standard_button} onClick={goSignUp}>
+        <span>Sign up</span>
+      </button>
     </div>
   );
 };

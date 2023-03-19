@@ -1,4 +1,5 @@
-const getUsers = async (page = 1) => {
+const getUsers = async (page) => {
+  console.log(page)
   const data = await fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`);
   const response = await data.json();
   return response;
@@ -22,7 +23,6 @@ export const formSubmit = async (formData) => {
   });
   const data = await res.json();
   console.log(data);
-  // 12650
 }
 
 export default getUsers;

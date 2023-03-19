@@ -6,7 +6,7 @@ const UserSubmit = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [checked, setChecked] = useState(1);
+  const [checked, setChecked] = useState("1");
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = (e) => {
@@ -53,7 +53,7 @@ const UserSubmit = () => {
   };
 
   return (
-    <div className={styles.submit_container}>
+    <div className={styles.submit_container} name="form-submit">
       <h2 className={styles.usersubmit_heading}>Working with POST request</h2>
       <form onSubmit={handleSubmit} className={styles.test_form}>
         <input
@@ -143,12 +143,11 @@ const UserSubmit = () => {
             </div>
             <div className={styles.file_input_name}>
               <span className={styles.file_input_file_name}>
-                Upload your photo
+                {selectedFile ? selectedFile.name : "Upload your photo"}
               </span>
             </div>
           </div>
         </label>
-
         <button type="submit" className={styles.submit_button}>
           Sign up
         </button>
