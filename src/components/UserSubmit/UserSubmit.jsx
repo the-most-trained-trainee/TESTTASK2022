@@ -128,13 +128,27 @@ const UserSubmit = () => {
             <label htmlFor="qa">QA</label>
           </div>
         </label>
-        <input
-          type="file"
-          name="file"
-          onChange={handleChange}
-          accept="image/*,.png,.jpg,.gif,.webp"
-          className={styles.photo_input}
-        />
+
+        <label htmlFor="file" className={styles.file_label}>
+          <input
+            type="file"
+            name="file"
+            onChange={handleChange}
+            accept="image/*,.png,.jpg,.gif,.webp"
+            className={styles.photo_input}
+          />
+          <div className={styles.file_input_area}>
+            <div className={styles.file_input_button}>
+              <span className={styles.file_input_button_span}>Upload</span>
+            </div>
+            <div className={styles.file_input_name}>
+              <span className={styles.file_input_file_name}>
+                Upload your photo
+              </span>
+            </div>
+          </div>
+        </label>
+
         <button type="submit" className={styles.submit_button}>
           Sign up
         </button>

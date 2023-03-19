@@ -116,6 +116,65 @@
 // }
 
 .photo_input {
-  background-color: red;
+  width: 100%;
+  opacity: 0;
+  height: 54px;
+  position: absolute;
+}
+
+.file_label {
+  border-radius: 4px;
   margin-bottom: 50px;
+  height: 54px;
+  position: relative;
+  z-index: 2;
+}
+
+.file_input_area {
+  height: 30px;
+  margin-bottom: 10px;
+  height: 54px;
+  display: flex;
+}
+
+.file_input_button {
+  width: 83px;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.87);
+  border-radius: 4px 0px 0px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file_input_name {
+  flex-grow: 1;
+  margin-left: -1px;
+  height: 100%;
+  border-radius: 0px 4px 4px 0px;
+
+  border: 1px solid #d0cfcf;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  z-index: -1;
+}
+
+.file_input_button_span {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.file_input_file_name {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #7e7e7e;
 }
