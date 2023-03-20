@@ -150,6 +150,16 @@ const UserSubmit = () => {
             </div>
           </div>
         </label>
+
+        <div className={styles.did_floating_label_content}>
+          <input
+            className={styles.did_floating_input}
+            type="text"
+            placeholder=" "
+          />
+          <label className={styles.did_floating_label}>Sale Price</label>
+        </div>
+
         <button type="submit" className={styles.submit_button}>
           Sign up
         </button>
