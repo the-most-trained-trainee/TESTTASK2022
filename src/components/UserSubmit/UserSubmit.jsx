@@ -56,32 +56,41 @@ const UserSubmit = () => {
     <div className={styles.submit_container} name="form-submit">
       <h2 className={styles.usersubmit_heading}>Working with POST request</h2>
       <form onSubmit={handleSubmit} className={styles.test_form}>
-        <input
-          name="name"
-          type="text"
-          placeholder="Your name"
-          value={name}
-          onChange={handleChange}
-          className={styles.usersubmit_input}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Username should contain 2-60 characters"
-        />
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={handleChange}
-          className={styles.usersubmit_input}
-        />
-        <input
-          name="phone"
-          type="text"
-          placeholder="Phone"
-          value={phone}
-          onChange={handleChange}
-          className={styles.usersubmit_input}
-        />
+        <div className={styles.did_floating_label_content}>
+          <input
+            name="name"
+            type="text"
+            placeholder=" "
+            value={name}
+            onChange={handleChange}
+            className={styles.did_floating_input}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Username should contain 2-60 characters"
+          />
+          <label className={styles.did_floating_label}>Your name</label>
+        </div>
+        <div className={styles.did_floating_label_content}>
+          <input
+            name="email"
+            type="text"
+            placeholder=" "
+            value={email}
+            onChange={handleChange}
+            className={styles.did_floating_input}
+          />
+          <label className={styles.did_floating_label}>Email</label>
+        </div>
+        <div className={styles.did_floating_label_content}>
+          <input
+            name="phone"
+            type="text"
+            placeholder=" "
+            value={phone}
+            onChange={handleChange}
+            className={styles.did_floating_input}
+          />
+          <label className={styles.did_floating_label}>Phone</label>
+        </div>
         <span className={styles.phone_format}>+38 (XXX) XXX - XX - XX</span>
         <label htmlFor="position" className={styles.position_choice}>
           <h3 className={styles.position_heading}>Select your position</h3>
@@ -150,16 +159,6 @@ const UserSubmit = () => {
             </div>
           </div>
         </label>
-
-        <div className={styles.did_floating_label_content}>
-          <input
-            className={styles.did_floating_input}
-            type="text"
-            placeholder=" "
-          />
-          <label className={styles.did_floating_label}>Sale Price</label>
-        </div>
-
         <button type="submit" className={styles.submit_button}>
           Sign up
         </button>

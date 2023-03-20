@@ -181,40 +181,78 @@
 
 // ===
 
+.container {
+  width: 300px;
+  padding: 20px;
+  margin: 0 auto;
+  // font-family: "Nunito";
+  // font-style: normal;
+  // font-weight: 400;
+  // font-size: 16px;
+  // line-height: 26px;
+  // color: #7e7e7e;
+}
 .did_floating_label_content {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  &:nth-child(3) {
+    margin-bottom: 4px;
+  }
 }
 .did_floating_label {
-  color: #1e4c82;
-  font-size: 13px;
-  font-weight: normal;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #7e7e7e;
   position: absolute;
   pointer-events: none;
   left: 15px;
-  top: 11px;
+  top: 14px;
   padding: 0 5px;
-  background: #fff;
+  background: #f8f8f8;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
 }
 .did_floating_input {
-  font-size: 12px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.87);
   display: block;
   width: 100%;
-  height: 36px;
-  padding: 0 20px;
-  background: #fff;
-  color: #323840;
-  border: 1px solid #3d85d8;
+  height: 54px;
+  padding: 0 16px;
+  background: #f8f8f8;
+  border: 1px solid #d0cfcf;
   border-radius: 4px;
   box-sizing: border-box;
   &:focus {
     outline: none;
     ~ .did_floating_label {
+      left: 12px;
       top: -8px;
-      font-size: 13px;
+      font-family: "Nunito";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: #7e7e7e;
     }
   }
+}
+
+.did_floating_input:not(:placeholder-shown) ~ .did_floating_label {
+  left: 12px;
+  top: -8px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #7e7e7e;
 }
