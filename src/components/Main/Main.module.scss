@@ -30,11 +30,11 @@
 }
 
 .main_container {
-  background-image: url(../../images/mob-background-image1x.jpg);
+  background-image: url(../../images/mob360-background-image1x.jpg);
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
-    background-image: url(../../images/mob-background-image2x.jpg);
+    background-image: url(../../images/mob360-background-image2x.jpg);
   }
   background-size: cover;
   background-position: center;
