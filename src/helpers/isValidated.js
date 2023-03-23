@@ -22,21 +22,19 @@ const isFieldValidated = (string, field) => {
 
 
 export const isImageValidated = (file) => {
-
-  // const size = file.size;
-  // let imageWidth = 0;
-  // let height = 0;
-
-  const fileReader = new FileReader();
-  fileReader.readAsDataURL(file);
-  fileReader.onload = function () {
-    const image = new Image();
-    image.src = fileReader.result;
-    image.onload = function () {
-      console.log(image.width, image.height);
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = function () {
+      const image = new Image();
+      image.src = fileReader.result;
+      image.onload = function () {
+        resolve({
+          width: image.width, height: image.height
+        })
+      };
     };
-  };
-
+  })
 }
 
 export default isFieldValidated;

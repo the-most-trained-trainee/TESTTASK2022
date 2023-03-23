@@ -19,7 +19,6 @@ const UserSubmit = () => {
     formData.append("position_id", checked);
     formData.append("photo", selectedFile);
     formSubmit(formData);
-
     setName("");
     setEmail("");
     setPhone("");
@@ -27,8 +26,10 @@ const UserSubmit = () => {
     setSelectedFile(null);
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value, files } = e.currentTarget;
+    let dimensions = {};
+
     switch (name) {
       case "name":
         setName(value.trimLeft());
@@ -43,7 +44,8 @@ const UserSubmit = () => {
         setChecked(value);
         break;
       case "file":
-        isImageValidated(files[0]);
+        dimensions = await isImageValidated(files[0]);
+        console.log(dimensions);
         setSelectedFile(files[0]);
         break;
       default:
