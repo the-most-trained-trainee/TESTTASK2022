@@ -56,6 +56,10 @@
   &:hover {
     background-color: #ffe302;
   }
+  &:disabled {
+    background-color: #b4b4b4;
+    color: rgba(255, 255, 255, 0.87);
+  }
 }
 
 .test_form {
@@ -255,4 +259,8 @@
   font-size: 12px;
   line-height: 14px;
   color: #7e7e7e;
+}
+
+.input_error {
+  border: 1px solid red;
 }

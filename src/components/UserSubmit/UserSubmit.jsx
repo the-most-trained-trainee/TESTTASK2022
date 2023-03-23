@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { formSubmit } from "../../crud-operations/getUsers";
 import styles from "./UserSubmit.module.scss";
+import isFieldValidated, { isImageValidated } from "../../helpers/isValidated";
 
 const UserSubmit = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+");
   const [checked, setChecked] = useState("1");
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -18,6 +19,7 @@ const UserSubmit = () => {
     formData.append("position_id", checked);
     formData.append("photo", selectedFile);
     formSubmit(formData);
+
     setName("");
     setEmail("");
     setPhone("");
@@ -29,18 +31,19 @@ const UserSubmit = () => {
     const { name, value, files } = e.currentTarget;
     switch (name) {
       case "name":
-        setName(value);
+        setName(value.trimLeft());
         break;
       case "email":
-        setEmail(value);
+        setEmail(value.trim());
         break;
       case "phone":
-        setPhone(value);
+        setPhone(value.trim());
         break;
       case "position":
         setChecked(value);
         break;
       case "file":
+        isImageValidated(files[0]);
         setSelectedFile(files[0]);
         break;
       default:
@@ -63,31 +66,46 @@ const UserSubmit = () => {
             placeholder=" "
             value={name}
             onChange={handleChange}
-            className={styles.did_floating_input}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Username should contain 2-60 characters"
+            className={
+              isFieldValidated(name, "name") || name === ""
+                ? styles.did_floating_input
+                : styles.did_floating_input + " " + styles.input_error
+            }
+            minLength={2}
+            maxLength={60}
+            required
           />
           <label className={styles.did_floating_label}>Your name</label>
         </div>
         <div className={styles.did_floating_label_content}>
           <input
             name="email"
-            type="text"
+            type="email"
             placeholder=" "
             value={email}
             onChange={handleChange}
-            className={styles.did_floating_input}
+            className={
+              isFieldValidated(email, "email") || email === ""
+                ? styles.did_floating_input
+                : styles.did_floating_input + " " + styles.input_error
+            }
+            required
           />
           <label className={styles.did_floating_label}>Email</label>
         </div>
         <div className={styles.did_floating_label_content}>
           <input
             name="phone"
-            type="text"
+            type="tel"
             placeholder=" "
             value={phone}
             onChange={handleChange}
-            className={styles.did_floating_input}
+            className={
+              isFieldValidated(phone, "phone") || phone === ""
+                ? styles.did_floating_input
+                : styles.did_floating_input + " " + styles.input_error
+            }
+            required
           />
           <label className={styles.did_floating_label}>Phone</label>
         </div>
@@ -139,14 +157,14 @@ const UserSubmit = () => {
             <label htmlFor="qa">QA</label>
           </div>
         </label>
-
         <label htmlFor="file" className={styles.file_label}>
           <input
             type="file"
             name="file"
             onChange={handleChange}
-            accept="image/*,.png,.jpg,.gif,.webp"
+            accept=".jpg"
             className={styles.photo_input}
+            required
           />
           <div className={styles.file_input_area}>
             <div className={styles.file_input_button}>
@@ -159,26 +177,15 @@ const UserSubmit = () => {
             </div>
           </div>
         </label>
-        <button type="submit" className={styles.submit_button}>
+        <button
+          type="submit"
+          className={styles.submit_button}
+          disabled={!isFieldValidated(phone, "phone")}>
           Sign up
         </button>
       </form>
     </div>
   );
 };
-
-// name: required(string - minLength: 2 - maxLength: 60)
-
-// email: required(string - minLength: 2 - maxLength: 100 - pattern: ^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$)
-// User email, must be a valid email according to RFC2822
-
-// phone: required(string - pattern: ^[\+]{0,1}380([0-9]{9})$)
-// User phone number. Number should start with code of Ukraine +380
-
-// position_id: required(integer - minimum: 1)
-// User`s position id. You can get list of all positions with their IDs using the API method GET api/v1/positions
-
-// photo: required(file)
-// Minimum size of photo 70x70px. The photo format must be jpeg/jpg type. The photo size must not be greater than 5 Mb.
 
 export default UserSubmit;
