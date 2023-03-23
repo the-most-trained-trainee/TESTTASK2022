@@ -17,8 +17,6 @@ const isFieldValidated = (string, field) => {
   }
 
 }
-// Minimum size of photo 70x70px.The photo format must be jpeg / jpg type.The photo size must not be greater than 5 Mb
-// 1 Megabytes = 1048576 Bytes
 
 
 export const isImageValidated = (file) => {
@@ -29,9 +27,9 @@ export const isImageValidated = (file) => {
       const image = new Image();
       image.src = fileReader.result;
       image.onload = function () {
-        resolve({
-          width: image.width, height: image.height
-        })
+        resolve(
+          file.type === 'image/jpeg' && file.size < 1048577 && image.width > 69 && image.height > 69 ? true : false
+        )
       };
     };
   })

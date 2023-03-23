@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "./UserCard.module.scss";
+import PhotoPlaceHolder from "../../images/photo-cover.svg";
 
 const UserCard = ({ details }) => {
   const { photo, name, position, email, phone } = details;
+
+  const isPhoto =
+    photo !==
+    "https://frontend-test-assignment-api.abz.agency/images/placeholders/placeholder.png";
 
   const phonePlusAdd = (phone) => (phone[0] === "+" ? phone : "+" + phone);
 
@@ -20,7 +25,11 @@ const UserCard = ({ details }) => {
 
   return (
     <li className={styles.card_container}>
-      <img src={photo} alt={name} className={styles.user_photo} />
+      <img
+        src={isPhoto ? photo : PhotoPlaceHolder}
+        alt={name}
+        className={styles.user_photo}
+      />
       <p className={styles.user_name}>{name}</p>
       <p className={styles.user_position}>{position}</p>
       <a className={styles.user_email_link} href={`mailto:${email}`}>

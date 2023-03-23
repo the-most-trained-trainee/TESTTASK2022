@@ -6,9 +6,10 @@ import isFieldValidated, { isImageValidated } from "../../helpers/isValidated";
 const UserSubmit = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("+");
+  const [phone, setPhone] = useState("");
   const [checked, setChecked] = useState("1");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isPhotoValidated, setIsPhotoValidated] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +29,6 @@ const UserSubmit = () => {
 
   const handleChange = async (e) => {
     const { name, value, files } = e.currentTarget;
-    let dimensions = {};
-
     switch (name) {
       case "name":
         setName(value.trimLeft());
@@ -44,8 +43,7 @@ const UserSubmit = () => {
         setChecked(value);
         break;
       case "file":
-        dimensions = await isImageValidated(files[0]);
-        console.log(dimensions);
+        setIsPhotoValidated(await isImageValidated(files[0]));
         setSelectedFile(files[0]);
         break;
       default:
@@ -55,6 +53,16 @@ const UserSubmit = () => {
 
   const isChecked = (value) => {
     return value === checked;
+  };
+
+  const isAllValidated = () => {
+    return isFieldValidated(name, "name") &&
+      isFieldValidated(email, "email") &&
+      isFieldValidated(phone, "phone") &&
+      isPhotoValidated &&
+      selectedFile
+      ? true
+      : false;
   };
 
   return (
@@ -71,13 +79,20 @@ const UserSubmit = () => {
             className={
               isFieldValidated(name, "name") || name === ""
                 ? styles.did_floating_input
-                : styles.did_floating_input + " " + styles.input_error
+                : styles.did_floating_input_error + " " + styles.input_error
             }
             minLength={2}
             maxLength={60}
             required
           />
           <label className={styles.did_floating_label}>Your name</label>
+          {isFieldValidated(name, "name") || name === "" ? (
+            <span className={styles.helper_text}>Please enter your name</span>
+          ) : (
+            <span className={styles.helper_text_error}>
+              Please enter your real name
+            </span>
+          )}
         </div>
         <div className={styles.did_floating_label_content}>
           <input
@@ -89,11 +104,18 @@ const UserSubmit = () => {
             className={
               isFieldValidated(email, "email") || email === ""
                 ? styles.did_floating_input
-                : styles.did_floating_input + " " + styles.input_error
+                : styles.did_floating_input_error + " " + styles.input_error
             }
             required
           />
           <label className={styles.did_floating_label}>Email</label>
+          {isFieldValidated(email, "email") || email === "" ? (
+            <span className={styles.helper_text}>Please enter your email</span>
+          ) : (
+            <span className={styles.helper_text_error}>
+              Please enter your real email
+            </span>
+          )}
         </div>
         <div className={styles.did_floating_label_content}>
           <input
@@ -105,13 +127,19 @@ const UserSubmit = () => {
             className={
               isFieldValidated(phone, "phone") || phone === ""
                 ? styles.did_floating_input
-                : styles.did_floating_input + " " + styles.input_error
+                : styles.did_floating_input_error + " " + styles.input_error
             }
             required
           />
           <label className={styles.did_floating_label}>Phone</label>
+          {isFieldValidated(phone, "phone") || phone === "" ? (
+            <span className={styles.helper_text}>+38 (XXX) XXX - XX - XX</span>
+          ) : (
+            <span className={styles.helper_text_error}>
+              Please enter a valid phone number
+            </span>
+          )}
         </div>
-        <span className={styles.phone_format}>+38 (XXX) XXX - XX - XX</span>
         <label htmlFor="position" className={styles.position_choice}>
           <h3 className={styles.position_heading}>Select your position</h3>
           <div className={styles.position_container}>
@@ -168,11 +196,22 @@ const UserSubmit = () => {
             className={styles.photo_input}
             required
           />
+
           <div className={styles.file_input_area}>
-            <div className={styles.file_input_button}>
+            <div
+              className={
+                isPhotoValidated || !selectedFile
+                  ? styles.file_input_button
+                  : styles.file_input_button + " " + styles.input_error
+              }>
               <span className={styles.file_input_button_span}>Upload</span>
             </div>
-            <div className={styles.file_input_name}>
+            <div
+              className={
+                isPhotoValidated || !selectedFile
+                  ? styles.file_input_name
+                  : styles.file_input_name + " " + styles.input_error
+              }>
               <span className={styles.file_input_file_name}>
                 {selectedFile ? selectedFile.name : "Upload your photo"}
               </span>
@@ -182,7 +221,7 @@ const UserSubmit = () => {
         <button
           type="submit"
           className={styles.submit_button}
-          disabled={!isFieldValidated(phone, "phone")}>
+          disabled={!isAllValidated()}>
           Sign up
         </button>
       </form>

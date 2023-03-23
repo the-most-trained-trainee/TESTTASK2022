@@ -32,7 +32,7 @@ const Users = () => {
     scroller.scrollTo("show_more", {
       duration: 1500,
       delay: 0,
-      smooth: "easeInOutQuint",
+      smooth: true,
       offset: -300,
     });
   };
@@ -41,6 +41,7 @@ const Users = () => {
     if (page !== 1) {
       addingUsers();
     }
+    // eslint-disable-next-line
   }, [page]);
 
   useEffect(() => {

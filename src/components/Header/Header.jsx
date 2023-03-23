@@ -6,16 +6,16 @@ import scroller from "react-scroll/modules/mixins/scroller";
 const Header = () => {
   const goSignUp = () => {
     scroller.scrollTo("form-submit", {
-      duration: 2500,
+      duration: 900,
       delay: 0,
-      smooth: "easeInOutQuint",
+      smooth: true,
     });
   };
   const goUsers = () => {
     scroller.scrollTo("users_section", {
-      duration: 2500,
+      duration: 900,
       delay: 0,
-      smooth: "easeInOutQuint",
+      smooth: true,
     });
   };
 

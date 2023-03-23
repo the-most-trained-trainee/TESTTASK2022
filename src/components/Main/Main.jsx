@@ -5,9 +5,9 @@ import styles from "./Main.module.scss";
 const Main = () => {
   const goSignUp = () => {
     scroller.scrollTo("form-submit", {
-      duration: 2500,
+      duration: 900,
       delay: 0,
-      smooth: "easeInOutQuint",
+      smooth: true,
     });
   };
 
