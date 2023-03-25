@@ -18,7 +18,6 @@ const isFieldValidated = (string, field) => {
 
 }
 
-
 export const isImageValidated = (file) => {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();

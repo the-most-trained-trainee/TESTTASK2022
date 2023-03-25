@@ -1,66 +1,91 @@
+@import "../../sass-utils/font-sets";
+
 .main_heading {
   display: block;
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #ffffff;
   padding-top: 40px;
-  margin-right: 16px;
-  margin-left: 16px;
-  margin-bottom: 21px;
+  margin: 0px 16px 21px 16px;
+  @include font-set($size: 40px, $line-height: 40px, $color: #ffffff);
+  @media screen and (min-width: 768px) {
+    max-width: 380px;
+    padding-top: 89px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 380px;
+    padding-top: 164px;
+    margin: 0 auto;
+  }
 }
 
 .main_text {
   display: block;
-
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: center;
-  color: #ffffff;
-  margin-right: 16px;
-  margin-left: 16px;
-  margin-top: 0px;
-  margin-bottom: 32px;
+  margin: 0px 16px 32px 16px;
+  @include font-set($size: 16px, $color: #ffffff);
+  @media screen and (min-width: 768px) {
+    max-width: 380px;
+    margin: 21px auto 32px auto;
+  }
 }
 
 .main_container {
+  // DPR 1
   background-image: url(../../images/mob360-background-image1x.jpg);
+  @media screen and (min-device-pixel-ratio: 1), screen and (min-width: 768px) {
+    background-image: url(../../images/tablet768-background-image-1x.jpg);
+  }
+  @media screen and (min-device-pixel-ratio: 1),
+    screen and (min-width: 1024px) {
+    background-image: url(../../images/desk1024-background-image-1x.jpg);
+  }
+  @media screen and (min-device-pixel-ratio: 1),
+    screen and (min-width: 2560px) {
+    background-image: url(../../images/desk2560-background-image-1x.jpg);
+  }
+  // DPR 2
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
     background-image: url(../../images/mob360-background-image2x.jpg);
+
+    @media screen and (min-width: 768px) {
+      background-image: url(../../images/tablet768-background-image-2x.jpg);
+    }
+    @media screen and (min-width: 1024px) {
+      background-image: url(../../images/desk1024-background-image-2x.jpg);
+    }
+    @media screen and (min-width: 2560px) {
+      background-image: url(../../images/desk2560-background-image-2x.jpg);
+    }
   }
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding-bottom: 71px;
   margin-bottom: 140px;
-
+  @media screen and (min-width: 768px) {
+    padding-bottom: 88px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding-bottom: 163px;
+  }
+  @media screen and (min-width: 2560px) {
+    background-size: contain;
+    max-width: 1170px;
+    margin: 0 auto 140px auto;
+  }
   button {
     display: block;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 0 auto;
   }
 }
 
 .standard_button {
   background-color: #f4e041;
-  border: none;
-  border-radius: 80px;
   width: 100px;
   height: 34px;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
+  border: none;
+  border-radius: 80px;
+  @include font-set($size: 16px);
   &:hover {
     background-color: #ffe302;
   }

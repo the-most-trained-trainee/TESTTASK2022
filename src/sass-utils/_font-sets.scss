@@ -1,0 +1,16 @@
+@mixin font-set(
+  $font: "Nunito",
+  $weight: 400,
+  $size: 14px,
+  $line-height: 26px,
+  $text-align: center,
+  $color: rgba(0, 0, 0, 0.87)
+) {
+  font-family: $font;
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  text-align: $text-align;
+  color: $color;
+}

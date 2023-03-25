@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { formSubmit } from "../../crud-operations/getUsers";
 import styles from "./UserSubmit.module.scss";
 import isFieldValidated, { isImageValidated } from "../../helpers/isValidated";
-
-// https://www.npmjs.com/package/react-toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import RegistationSuccess from "../RegistrationSuccess/RegistationSuccess";
 
 const UserSubmit = () => {
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ const UserSubmit = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isPhotoValidated, setIsPhotoValidated] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -21,7 +22,8 @@ const UserSubmit = () => {
     formData.append("phone", phone);
     formData.append("position_id", checked);
     formData.append("photo", selectedFile);
-    formSubmit(formData);
+    const result = await formSubmit(formData);
+    result.success ? notify() : notifyError(email);
     setName("");
     setEmail("");
     setPhone("");
@@ -65,6 +67,31 @@ const UserSubmit = () => {
       selectedFile
       ? true
       : false;
+  };
+
+  const notify = () =>
+    toast(<RegistationSuccess />, {
+      position: "top-center",
+      autoClose: 300,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const notifyError = (email) => {
+    toast.error(`Error! User with email ${email} already registered`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (
@@ -227,6 +254,7 @@ const UserSubmit = () => {
           Sign up
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

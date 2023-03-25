@@ -1,66 +1,75 @@
+@import "../../sass-utils/font-sets";
+
 .users_container {
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-bottom: 140px;
+  margin: 0 16px 140px 16px;
 }
 
 .users_heading {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 40px, $line-height: 40px);
   margin-bottom: 50px;
-  text-align: center;
 }
 
 .users_list {
   margin-bottom: 50px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 704px;
+    gap: 16px;
+    margin: 0 auto 50px auto;
+    & li {
+      width: 344px;
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 904px;
+    gap: 29px;
+    & li {
+      width: 282px;
+    }
+  }
+
+  @media screen and (min-width: 2560px) {
+    max-width: 1170px;
+    padding: 0 1px;
+    & li {
+      width: 370px;
+    }
+  }
 }
 
 .standard_button {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100px;
+  height: 34px;
   background-color: #f4e041;
   border: none;
   border-radius: 80px;
-  width: 100px;
-  height: 34px;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
+  margin: 0 auto;
+  @include font-set($size: 16px);
   width: 120px;
   &:hover {
     background-color: #ffe302;
   }
   & > span {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: rgba(0, 0, 0, 0.87);
+    @include font-set($size: 16px);
   }
 }
 
 .loader {
+  display: block;
+  animation: rotation 1s linear infinite;
+  box-sizing: border-box;
   width: 48px;
   height: 48px;
   border: 7px solid #00bdd3;
   border-bottom-color: transparent;
   border-radius: 50%;
-  display: block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px auto 20px auto;
 }
 
 @keyframes rotation {

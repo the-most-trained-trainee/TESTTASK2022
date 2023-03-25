@@ -18,7 +18,7 @@ export const formSubmit = async (formData) => {
     }
   });
   const data = await res.json();
-  console.log(data);
+  return data;
 }
 
 export default getUsers;

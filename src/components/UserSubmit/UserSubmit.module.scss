@@ -1,58 +1,37 @@
+@import "../../sass-utils/font-sets";
+
 .submit_container {
-  margin-right: 16px;
-  margin-left: 16px;
+  margin: 0 16px;
 }
 
 .usersubmit_heading {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 40px, $line-height: 40px);
   margin-bottom: 50px;
 }
 
 .usersubmit_input {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #7e7e7e;
-  margin-bottom: 50px;
-
-  padding-left: 16px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  @include font-set($size: 16px, $color: #7e7e7e);
   background-color: inherit;
-
+  padding: 14px 0 14px 16px;
   border: 1px solid #d0cfcf;
   border-radius: 4px;
+  margin-bottom: 50px;
 }
 
 .position_choice {
   & .position_container:last-child {
-    margin-bottom: 50px;
+    margin-bottom: 47px;
   }
 }
 
 .submit_button {
+  @include font-set($size: 16px);
   background-color: #f4e041;
-  border: none;
-  border-radius: 80px;
   width: 100px;
   height: 34px;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  margin-bottom: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  border: none;
+  border-radius: 80px;
+  margin: 0 auto;
   &:hover {
     background-color: #ffe302;
   }
@@ -65,129 +44,103 @@
 .test_form {
   display: flex;
   flex-direction: column;
-
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 100px auto;
   & input:nth-child(3) {
     margin-bottom: 4px;
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 380px;
   }
 }
 
 .helper_text {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  color: #7e7e7e;
-  margin-left: 16px;
-  margin-bottom: 25px;
+  @include font-set($size: 12px, $line-height: 14px, $color: #7e7e7e);
+  margin: 0 0 25px 16px;
 }
 .helper_text_error {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  color: #cb3d40;
-  margin-left: 16px;
-  margin-bottom: 25px;
+  @include font-set($size: 12px, $line-height: 14px, $color: #cb3d40);
+  margin: 0 0 25px 16px;
 }
 
 .position_heading {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 16px);
   margin-bottom: 11px;
 }
 
 .position_container {
-  margin-left: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 13px;
+  margin: 0 0 13px 0;
   & input {
     appearance: none;
+    background-clip: content-box;
     width: 20px;
     height: 20px;
     border: 1px solid #00bdd3;
     border-radius: 50%;
-    background-clip: content-box;
     padding: 4px;
     margin-right: 12px;
     &:checked {
       background-color: #00bdd3;
     }
   }
+  & label {
+    @include font-set($size: 16px);
+  }
 }
 
 // photo input
 
 .photo_input {
-  width: 100%;
-  opacity: 0;
-  height: 54px;
   position: absolute;
+  width: 100%;
+  height: 54px;
+  opacity: 0;
 }
 
 .file_label {
+  position: relative;
+  height: 54px;
+  z-index: 2;
   border-radius: 4px;
   margin-bottom: 50px;
-  height: 54px;
-  position: relative;
-  z-index: 2;
 }
 
 .file_input_area {
-  height: 30px;
-  margin-bottom: 10px;
   height: 54px;
   display: flex;
+  margin-bottom: 10px;
 }
 
 .file_input_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 83px;
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.87);
   border-radius: 4px 0px 0px 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .file_input_name {
-  flex-grow: 1;
-  margin-left: -1px;
-  height: 100%;
-  border-radius: 0px 4px 4px 0px;
-  border: 1px solid #d0cfcf;
   display: flex;
   align-items: center;
-  padding-left: 16px;
+  flex-grow: 1;
+  height: 100%;
   z-index: -1;
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid #d0cfcf;
+  padding-left: 16px;
+  margin-left: -1px;
 }
 
 .file_input_button_span {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 16px);
 }
 
 .file_input_file_name {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #7e7e7e;
+  @include font-set($size: 16px, $color: #7e7e7e);
 }
 
 .container {
@@ -203,49 +156,39 @@
   }
 }
 .did_floating_label {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #7e7e7e;
+  @include font-set($size: 16px, $color: #7e7e7e);
   position: absolute;
   pointer-events: none;
   left: 15px;
   top: 14px;
-  padding: 0 5px;
   background: #f8f8f8;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
+  padding: 0 5px;
 }
 
 .did_floating_input {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 16px);
   display: block;
   width: 100%;
   height: 54px;
-  padding: 0 16px;
   background: #f8f8f8;
+  box-sizing: border-box;
+  padding: 0 16px;
   border: 1px solid #d0cfcf;
   border-radius: 4px;
-  box-sizing: border-box;
   &:focus {
     outline: none;
     ~ .did_floating_label {
       left: 12px;
       top: -8px;
-      font-family: "Nunito";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 14px;
-      color: #7e7e7e;
+      @include font-set(
+        $size: 12px,
+        $line-height: 14px,
+        $color: #7e7e7e,
+        $weight: 500
+      );
     }
   }
 }
@@ -253,12 +196,12 @@
 .did_floating_input:not(:placeholder-shown) ~ .did_floating_label {
   left: 12px;
   top: -8px;
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: #7e7e7e;
+  @include font-set(
+    $size: 12px,
+    $line-height: 14px,
+    $color: #7e7e7e,
+    $weight: 500
+  );
 }
 
 .input_error {
@@ -266,31 +209,26 @@
 }
 
 .did_floating_input_error {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 16px);
   display: block;
   width: 100%;
   height: 54px;
-  padding: 0 16px;
   background: #f8f8f8;
+  box-sizing: border-box;
+  padding: 0 16px;
   border: 1px solid #cb3d40;
   border-radius: 4px;
-  box-sizing: border-box;
   &:focus {
     outline: none;
     ~ .did_floating_label {
       left: 12px;
       top: -8px;
-      font-family: "Nunito";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 14px;
-      color: #cb3d40;
+      @include font-set(
+        $size: 12px,
+        $line-height: 14px,
+        $color: #cb3d40,
+        $weight: 500
+      );
     }
   }
 }
@@ -298,10 +236,15 @@
 .did_floating_input_error:not(:placeholder-shown) ~ .did_floating_label {
   left: 12px;
   top: -8px;
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: #cb3d40;
+  @include font-set(
+    $size: 12px,
+    $line-height: 14px,
+    $color: #cb3d40,
+    $weight: 500
+  );
+}
+
+.registration_sucess {
+  width: 200;
+  height: 200;
 }

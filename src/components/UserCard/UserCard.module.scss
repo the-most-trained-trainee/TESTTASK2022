@@ -1,9 +1,10 @@
+@import "../../sass-utils/font-sets";
+
 .card_container {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
   background-color: #ffffff;
   border-radius: 10px;
+  padding: 20px 0;
+  margin-bottom: 20px;
 }
 
 .card_container:last-child {
@@ -11,81 +12,62 @@
 }
 
 .user_photo {
-  border-radius: 90px;
-  margin-bottom: 20px;
-  width: 70px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 70px;
+  border-radius: 90px;
+  margin: 0 auto 20px auto;
 }
 
 .user_name {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
-  margin-bottom: 20px;
-
+  @include font-set($size: 16px);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px 20px 20px;
 }
 
 .user_position {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 16px);
 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px;
 }
 
 .user_email {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
+  @include font-set($size: 16px);
 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  // margin-left: 20px;
-  // margin-right: 20px;
 }
 
 .user_email_link {
   display: block;
-  margin-left: 20px;
-  margin-right: 20px;
   text-decoration: none;
+  margin: 0 20px;
 }
 
 .user_phone {
-  font-family: "Nunito";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.87);
-
+  @include font-set($size: 16px);
   display: block;
-  margin-left: auto;
-  margin-right: auto;
   text-decoration: none;
+  margin: 0 auto;
+}
+
+.tooltip_styles {
+  @include font-set($size: 16px, $color: #ffffff);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  opacity: 100;
+  padding: 3px 16px;
+  border-radius: 4px;
+  margin: 21px 0 0 40px;
+}
+
+.example_arrow {
+  display: none;
 }

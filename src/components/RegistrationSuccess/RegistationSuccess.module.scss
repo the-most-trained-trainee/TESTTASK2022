@@ -1,0 +1,13 @@
+@import "../../sass-utils/font-sets";
+
+.success_image {
+  display: block;
+  width: 328px;
+  height: 290px;
+  margin: 0 auto 30px auto;
+}
+
+.success_heading {
+  @include font-set($size: 40px, $line-height: 40px);
+  margin: 50px 0;
+}

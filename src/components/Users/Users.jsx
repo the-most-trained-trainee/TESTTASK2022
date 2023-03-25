@@ -40,11 +40,11 @@ const Users = () => {
   };
 
   const goToUsersEnd = () => {
-    scroller.scrollTo("show_more", {
+    scroller.scrollTo("form-submit", {
       duration: 700,
       delay: 0,
       smooth: true,
-      offset: -300,
+      offset: -500,
     });
   };
 
@@ -68,10 +68,7 @@ const Users = () => {
       </ul>
       {isLoaded && <span className={styles.loader}></span>}
       {page !== maxpPage && (
-        <button
-          onClick={showMore}
-          className={styles.standard_button}
-          name="show_more">
+        <button onClick={showMore} className={styles.standard_button}>
           <span>Show More</span>
         </button>
       )}
