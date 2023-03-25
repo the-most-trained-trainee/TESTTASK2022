@@ -1,5 +1,4 @@
 const getUsers = async (page) => {
-  console.log(page)
   const data = await fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`);
   const response = await data.json();
   return response;
@@ -12,9 +11,6 @@ export const getToken = async () => {
 }
 
 export const formSubmit = async (formData) => {
-  // for (let pair of formData.entries()) {
-  //   console.log(pair[0] + ", " + pair[1]);
-  // }
   const registrationToken = await getToken();
   const res = await fetch("https://frontend-test-assignment-api.abz.agency/api/v1/users", {
     method: "POST", body: formData, headers: {

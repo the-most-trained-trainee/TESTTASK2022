@@ -3,6 +3,8 @@ import { formSubmit } from "../../crud-operations/getUsers";
 import styles from "./UserSubmit.module.scss";
 import isFieldValidated, { isImageValidated } from "../../helpers/isValidated";
 
+// https://www.npmjs.com/package/react-toastify
+
 const UserSubmit = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +25,7 @@ const UserSubmit = () => {
     setName("");
     setEmail("");
     setPhone("");
-    setChecked("frontend");
+    setChecked("1");
     setSelectedFile(null);
   };
 
@@ -151,7 +153,7 @@ const UserSubmit = () => {
               checked={isChecked("1")}
               onChange={handleChange}
             />
-            <label htmlFor="front">Frontend developer</label>
+            <label htmlFor="front">Lawyer</label>
           </div>
           <div className={styles.position_container}>
             <input
@@ -162,7 +164,7 @@ const UserSubmit = () => {
               checked={isChecked("2")}
               onChange={handleChange}
             />
-            <label htmlFor="back">Backend developer</label>
+            <label htmlFor="back">Content manager</label>
           </div>
           <div className={styles.position_container}>
             <input
@@ -173,7 +175,7 @@ const UserSubmit = () => {
               checked={isChecked("3")}
               onChange={handleChange}
             />
-            <label htmlFor="designer">Designer</label>
+            <label htmlFor="designer">Security</label>
           </div>
           <div className={styles.position_container}>
             <input
@@ -184,7 +186,7 @@ const UserSubmit = () => {
               checked={isChecked("4")}
               onChange={handleChange}
             />
-            <label htmlFor="qa">QA</label>
+            <label htmlFor="qa">Designer</label>
           </div>
         </label>
         <label htmlFor="file" className={styles.file_label}>
