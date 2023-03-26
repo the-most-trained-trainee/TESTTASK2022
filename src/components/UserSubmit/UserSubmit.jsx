@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { formSubmit } from "../../crud-operations/getUsers";
 import styles from "./UserSubmit.module.scss";
 import isFieldValidated, { isImageValidated } from "../../helpers/isValidated";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegistationSuccess from "../RegistrationSuccess/RegistationSuccess";
+import { notifyError, notifySuccess } from "../../helpers/registrationReport";
 
 const UserSubmit = () => {
   const [name, setName] = useState("");
@@ -23,12 +24,13 @@ const UserSubmit = () => {
     formData.append("position_id", checked);
     formData.append("photo", selectedFile);
     const result = await formSubmit(formData);
-    result.success ? notify() : notifyError(email);
+    result.success ? notifySuccess(<RegistationSuccess />) : notifyError(email);
     setName("");
     setEmail("");
     setPhone("");
     setChecked("1");
     setSelectedFile(null);
+    setIsPhotoValidated(false);
   };
 
   const handleChange = async (e) => {
@@ -60,39 +62,22 @@ const UserSubmit = () => {
   };
 
   const isAllValidated = () => {
-    return isFieldValidated(name, "name") &&
-      isFieldValidated(email, "email") &&
-      isFieldValidated(phone, "phone") &&
-      isPhotoValidated &&
-      selectedFile
+    return isFieldValidated(name, "name") && isFieldValidated(email, "email") && isFieldValidated(phone, "phone") && isPhotoValidated && selectedFile
       ? true
       : false;
   };
 
-  const notify = () =>
-    toast(<RegistationSuccess />, {
-      position: "top-center",
-      autoClose: 300,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+  const validationStyles = (field, stringName) =>
+    isFieldValidated(field, stringName) || field === "" ? styles.did_floating_input : styles.did_floating_input_error + " " + styles.input_error;
 
-  const notifyError = (email) => {
-    toast.error(`Error! User with email ${email} already registered`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+  const helperTextStyles = (field, stringName) =>
+    isFieldValidated(field, stringName) || field === "" ? (
+      <span className={styles.helper_text}>{stringName === "phone" ? "+38 (0XX) XXX - XX - XX" : `Please enter your ${stringName}`}</span>
+    ) : (
+      <span className={styles.helper_text_error}>
+        {stringName === "phone" ? "Please enter a valid phone number" : `Please enter your real ${stringName}`}
+      </span>
+    );
 
   return (
     <div className={styles.submit_container} name="form-submit">
@@ -105,24 +90,15 @@ const UserSubmit = () => {
             placeholder=" "
             value={name}
             onChange={handleChange}
-            className={
-              isFieldValidated(name, "name") || name === ""
-                ? styles.did_floating_input
-                : styles.did_floating_input_error + " " + styles.input_error
-            }
+            className={validationStyles(name, "name")}
             minLength={2}
             maxLength={60}
             required
           />
           <label className={styles.did_floating_label}>Your name</label>
-          {isFieldValidated(name, "name") || name === "" ? (
-            <span className={styles.helper_text}>Please enter your name</span>
-          ) : (
-            <span className={styles.helper_text_error}>
-              Please enter your real name
-            </span>
-          )}
+          {helperTextStyles(name, "name")}
         </div>
+
         <div className={styles.did_floating_label_content}>
           <input
             name="email"
@@ -130,21 +106,11 @@ const UserSubmit = () => {
             placeholder=" "
             value={email}
             onChange={handleChange}
-            className={
-              isFieldValidated(email, "email") || email === ""
-                ? styles.did_floating_input
-                : styles.did_floating_input_error + " " + styles.input_error
-            }
+            className={validationStyles(email, "email")}
             required
           />
           <label className={styles.did_floating_label}>Email</label>
-          {isFieldValidated(email, "email") || email === "" ? (
-            <span className={styles.helper_text}>Please enter your email</span>
-          ) : (
-            <span className={styles.helper_text_error}>
-              Please enter your real email
-            </span>
-          )}
+          {helperTextStyles(email, "email")}
         </div>
         <div className={styles.did_floating_label_content}>
           <input
@@ -153,104 +119,43 @@ const UserSubmit = () => {
             placeholder=" "
             value={phone}
             onChange={handleChange}
-            className={
-              isFieldValidated(phone, "phone") || phone === ""
-                ? styles.did_floating_input
-                : styles.did_floating_input_error + " " + styles.input_error
-            }
+            className={validationStyles(phone, "phone")}
             required
           />
           <label className={styles.did_floating_label}>Phone</label>
-          {isFieldValidated(phone, "phone") || phone === "" ? (
-            <span className={styles.helper_text}>+38 (XXX) XXX - XX - XX</span>
-          ) : (
-            <span className={styles.helper_text_error}>
-              Please enter a valid phone number
-            </span>
-          )}
+          {helperTextStyles(phone, "phone")}
         </div>
         <label htmlFor="position" className={styles.position_choice}>
           <h3 className={styles.position_heading}>Select your position</h3>
           <div className={styles.position_container}>
-            <input
-              type="radio"
-              id="front"
-              name="position"
-              value={1}
-              checked={isChecked("1")}
-              onChange={handleChange}
-            />
+            <input type="radio" id="front" name="position" value={1} checked={isChecked("1")} onChange={handleChange} />
             <label htmlFor="front">Lawyer</label>
           </div>
           <div className={styles.position_container}>
-            <input
-              type="radio"
-              id="back"
-              name="position"
-              value={2}
-              checked={isChecked("2")}
-              onChange={handleChange}
-            />
+            <input type="radio" id="back" name="position" value={2} checked={isChecked("2")} onChange={handleChange} />
             <label htmlFor="back">Content manager</label>
           </div>
           <div className={styles.position_container}>
-            <input
-              type="radio"
-              id="designer"
-              name="position"
-              value={3}
-              checked={isChecked("3")}
-              onChange={handleChange}
-            />
+            <input type="radio" id="designer" name="position" value={3} checked={isChecked("3")} onChange={handleChange} />
             <label htmlFor="designer">Security</label>
           </div>
           <div className={styles.position_container}>
-            <input
-              type="radio"
-              id="qa"
-              name="position"
-              value={4}
-              checked={isChecked("4")}
-              onChange={handleChange}
-            />
+            <input type="radio" id="qa" name="position" value={4} checked={isChecked("4")} onChange={handleChange} />
             <label htmlFor="qa">Designer</label>
           </div>
         </label>
         <label htmlFor="file" className={styles.file_label}>
-          <input
-            type="file"
-            name="file"
-            onChange={handleChange}
-            accept=".jpg"
-            className={styles.photo_input}
-            required
-          />
-
+          <input type="file" name="file" onChange={handleChange} accept=".jpg" className={styles.photo_input} required />
           <div className={styles.file_input_area}>
-            <div
-              className={
-                isPhotoValidated || !selectedFile
-                  ? styles.file_input_button
-                  : styles.file_input_button + " " + styles.input_error
-              }>
+            <div className={isPhotoValidated || !selectedFile ? styles.file_input_button : styles.file_input_button + " " + styles.input_error}>
               <span className={styles.file_input_button_span}>Upload</span>
             </div>
-            <div
-              className={
-                isPhotoValidated || !selectedFile
-                  ? styles.file_input_name
-                  : styles.file_input_name + " " + styles.input_error
-              }>
-              <span className={styles.file_input_file_name}>
-                {selectedFile ? selectedFile.name : "Upload your photo"}
-              </span>
+            <div className={isPhotoValidated || !selectedFile ? styles.file_input_name : styles.file_input_name + " " + styles.input_error}>
+              <span className={styles.file_input_file_name}>{selectedFile ? selectedFile.name : "Upload your photo"}</span>
             </div>
           </div>
         </label>
-        <button
-          type="submit"
-          className={styles.submit_button}
-          disabled={!isAllValidated()}>
+        <button type="submit" className={styles.submit_button} disabled={!isAllValidated()}>
           Sign up
         </button>
       </form>

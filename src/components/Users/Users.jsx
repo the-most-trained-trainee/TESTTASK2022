@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import smoothScroll from "../../helpers/smoothScroll";
 import getUsers from "../../crud-operations/getUsers";
 import UserCard from "../UserCard/UserCard";
 import styles from "./Users.module.scss";
-import scroller from "react-scroll/modules/mixins/scroller";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [maxpPage, setMaxpage] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
-
   const userIdList = useRef(new Set());
 
   const makeList = async () => {
@@ -26,26 +25,13 @@ const Users = () => {
     setIsLoaded(true);
     const newUsers = await getUsers(page);
     setMaxpage(newUsers.total_pages);
-
-    const usersToAdd = newUsers.users.filter(
-      (user) => !userIdList.current.has(user.id)
-    );
+    const usersToAdd = newUsers.users.filter((user) => !userIdList.current.has(user.id));
     newUsers.users.map((user) => userIdList.current.add(user.id));
     setUsers((users) => [...users, ...usersToAdd]);
     setIsLoaded(false);
-
     setTimeout(() => {
-      goToUsersEnd();
+      smoothScroll("form-submit", -500);
     }, 250);
-  };
-
-  const goToUsersEnd = () => {
-    scroller.scrollTo("form-submit", {
-      duration: 700,
-      delay: 0,
-      smooth: true,
-      offset: -500,
-    });
   };
 
   useEffect(() => {
@@ -62,10 +48,7 @@ const Users = () => {
   return (
     <div className={styles.users_container} name="users_section">
       <h2 className={styles.users_heading}>Working with GET request</h2>
-      <ul className={styles.users_list}>
-        {users &&
-          users.map((user) => <UserCard details={user} key={user.id} />)}
-      </ul>
+      <ul className={styles.users_list}>{users && users.map((user) => <UserCard details={user} key={user.id} />)}</ul>
       {isLoaded && <span className={styles.loader}></span>}
       {page !== maxpPage && (
         <button onClick={showMore} className={styles.standard_button}>

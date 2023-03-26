@@ -1,16 +1,8 @@
-import React from "react";
-import { scroller } from "react-scroll/modules";
+// import React from "react";
+import smoothScroll from "../../helpers/smoothScroll";
 import styles from "./Main.module.scss";
 
 const Main = () => {
-  const goSignUp = () => {
-    scroller.scrollTo("form-submit", {
-      duration: 900,
-      delay: 0,
-      smooth: true,
-    });
-  };
-
   return (
     <div className={styles.main_container}>
       <h1 className={styles.main_heading}>
@@ -23,7 +15,9 @@ const Main = () => {
         mind. They should also be excited to learn, as the world of Front-End
         Development keeps evolving.
       </p>
-      <button className={styles.standard_button} onClick={goSignUp}>
+      <button
+        className={styles.standard_button}
+        onClick={() => smoothScroll("form-submit")}>
         <span>Sign up</span>
       </button>
     </div>

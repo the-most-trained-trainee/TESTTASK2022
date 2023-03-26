@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./UserCard.module.scss";
-import PhotoPlaceHolder from "../../images/photo-cover.svg";
-
+// import React from "react";
+import numberTransform from "../../helpers/numberTransform";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import styles from "./UserCard.module.scss";
+import PhotoPlaceHolder from "../../images/photo-cover.svg";
 
 const UserCard = ({ details }) => {
   const { photo, name, position, email, phone, id } = details;
@@ -13,18 +13,6 @@ const UserCard = ({ details }) => {
     "https://frontend-test-assignment-api.abz.agency/images/placeholders/placeholder.png";
 
   const phonePlusAdd = (phone) => (phone[0] === "+" ? phone : "+" + phone);
-
-  const numberTransform = (data) => {
-    let number = data;
-    if (number[0] !== "+") {
-      number = "+" + number;
-    }
-    const result = `${number.slice(0, 3)} (${number.slice(
-      3,
-      6
-    )}) ${number.slice(6, 9)} ${number.slice(9, 11)} ${number.slice(11, 13)}`;
-    return result;
-  };
 
   return (
     <>
