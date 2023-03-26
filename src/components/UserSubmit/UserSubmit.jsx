@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { formSubmit } from "../../crud-operations/getUsers";
+import { formSubmit } from "../../helpers/crud-operations";
 import styles from "./UserSubmit.module.scss";
 import isFieldValidated, { isImageValidated } from "../../helpers/isValidated";
 import { ToastContainer } from "react-toastify";
@@ -18,6 +18,15 @@ const UserSubmit = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isPhotoValidated, setIsPhotoValidated] = useState(false);
 
+  const makeDefault = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setChecked("1");
+    setSelectedFile(null);
+    setIsPhotoValidated(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -28,12 +37,7 @@ const UserSubmit = () => {
     formData.append("photo", selectedFile);
     const result = await formSubmit(formData);
     result.success ? notifySuccess(<RegistationSuccess />) : notifyError(email);
-    setName("");
-    setEmail("");
-    setPhone("");
-    setChecked("1");
-    setSelectedFile(null);
-    setIsPhotoValidated(false);
+    makeDefault();
   };
 
   const handleChange = async (e) => {

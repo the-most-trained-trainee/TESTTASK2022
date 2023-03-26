@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import smoothScroll from "../../helpers/smoothScroll";
-import getUsers from "../../crud-operations/getUsers";
+import { getUsers } from "../../helpers/crud-operations";
 import UserCard from "../UserCard/UserCard";
 import styles from "./Users.module.scss";
 
