@@ -1,8 +1,14 @@
 import styles from "./FloatingLabelInput.module.scss";
 import isFieldValidated from "../../helpers/isValidated";
 
-const FloatingLabelInput = ({ name, value, handleChange }) => {
-  const validationStyles = (field, stringName) =>
+interface Props {
+  name: string;
+  value: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const FloatingLabelInput: React.FC<Props> = ({ name, value, handleChange }: Props) => {
+  const validationStyles = (field: string, stringName: string) =>
     isFieldValidated(field, stringName) || field === "" ? styles.did_floating_input : styles.did_floating_input_error + " " + styles.input_error;
 
   const defineLabel = () => {
@@ -17,7 +23,7 @@ const FloatingLabelInput = ({ name, value, handleChange }) => {
     if (value === "phone") return "tel";
   };
 
-  const helperTextStyles = (field, stringName) =>
+  const helperTextStyles = (field: string, stringName: string) =>
     isFieldValidated(field, stringName) || field === "" ? (
       <span className={styles.helper_text}>{stringName === "phone" ? "+38 (0XX) XXX - XX - XX" : `Please enter your ${stringName}`}</span>
     ) : (

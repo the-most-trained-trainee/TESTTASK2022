@@ -1,8 +1,14 @@
-import React from "react";
 import styles from "./PositionSelect.module.scss";
 
-const PositionSelect = ({ onChange, selected }) => {
-  const isChecked = (value) => value === selected;
+// selectedValue
+
+interface Props {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  selected: string;
+}
+
+const PositionSelect: React.FC<Props> = ({ onChange, selected }: Props) => {
+  const isChecked = (value: string) => value === selected;
 
   return (
     <label htmlFor="position" className={styles.position_choice}>

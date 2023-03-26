@@ -2,7 +2,7 @@ import smoothScroll from "../../helpers/smoothScroll";
 import styles from "./Header.module.scss";
 import TestSiteLogo from "../../images/logo.svg";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header>
       <div className={styles.header_container}>

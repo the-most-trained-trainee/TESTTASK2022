@@ -1,8 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-export const notifySuccess = (message) =>
+export const notifySuccess = (message: JSX.Element) =>
   toast(message, {
     position: "top-center",
     autoClose: 300,
@@ -14,7 +13,7 @@ export const notifySuccess = (message) =>
     theme: "light",
   });
 
-export const notifyError = (email) => {
+export const notifyError = (email: string) => {
   toast.error(`Error! User with email ${email} already registered`, {
     position: "top-right",
     autoClose: 5000,
