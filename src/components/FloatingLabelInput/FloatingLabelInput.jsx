@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./FloatingLabelInput.module.scss";
 import isFieldValidated from "../../helpers/isValidated";
 
